@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi perfil</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <header>
+      <button id="btn-tema">☀️ Modo claro</button>
+      <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=tunombre" alt="foto de perfil" class="avatar" />
+      <h1>Tu nombre aquí</h1>
+      <p class="cargo">Tecnólogo en Desarrollo de Software</p>
+      <p class="ubicacion">📍 Cartagena, Colombia</p>
+    </header>
+
+    <section>
+      <h2>Sobre mí</h2>
+      <p>Desarrollador fullstack en formación, apasionado por construir soluciones reales. Enfocado en aprender rápido y aplicar lo que sé.</p>
+    </section>
+
+    <section>
+      <h2>Habilidades</h2>
+      <div class="habilidad">
+        <span>HTML</span>
+        <div class="barra"><div class="progreso" data-nivel="80"></div></div>
+      </div>
+      <div class="habilidad">
+        <span>CSS</span>
+        <div class="barra"><div class="progreso" data-nivel="65"></div></div>
+      </div>
+      <div class="habilidad">
+        <span>JavaScript</span>
+        <div class="barra"><div class="progreso" data-nivel="40"></div></div>
+      </div>
+      <div class="habilidad">
+        <span>Git</span>
+        <div class="barra"><div class="progreso" data-nivel="30"></div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Contáctame</h2>
+      <form id="formulario">
+        <input type="text" id="nombre" placeholder="Tu nombre" required />
+        <input type="email" id="email" placeholder="Tu correo" required />
+        <textarea id="mensaje" placeholder="Tu mensaje" rows="4" required></textarea>
+        <button type="submit">Enviar mensaje</button>
+      </form>
+      <p id="respuesta" class="oculto">✅ ¡Mensaje enviado! Te respondo pronto.</p>
+    </section>
+
+  </body>
+  <script src="app.js"></script>
+</html>
