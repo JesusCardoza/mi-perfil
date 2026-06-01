@@ -1,5 +1,5 @@
 // Inicializa EmailJS
-emailjs.init('20pIB_GZLTMJrqBBCbC6C');
+emailjs.init('VVxLl3lqm5OxL93Oa');
 
 // Anima las barras de progreso
 const barras = document.querySelectorAll('.progreso');
