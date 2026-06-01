@@ -1,6 +1,8 @@
-// Anima las barras de progreso al cargar la página
-const barras = document.querySelectorAll('.progreso');
+// Inicializa EmailJS
+emailjs.init('20pIB_GZLTMJrqBBCbC6C');
 
+// Anima las barras de progreso
+const barras = document.querySelectorAll('.progreso');
 barras.forEach(barra => {
   const nivel = barra.getAttribute('data-nivel');
   setTimeout(() => {
@@ -8,53 +10,45 @@ barras.forEach(barra => {
   }, 300);
 });
 
-// Maneja el formulario de contacto
+// Formulario de contacto
 const formulario = document.getElementById('formulario');
 const respuesta = document.getElementById('respuesta');
 
 formulario.addEventListener('submit', function(e) {
-  e.preventDefault(); // Evita que la página se recargue
-
-  const nombre = document.getElementById('nombre').value;
-  const email = document.getElementById('email').value;
-  const mensaje = document.getElementById('mensaje').value;
-
-  // Aquí normalmente enviarías los datos a un servidor
-  // Por ahora simulamos el envío
-  console.log('Mensaje recibido:', { nombre, email, mensaje });
-
-  formulario.reset();
-  respuesta.classList.remove('oculto');
-  respuesta.classList.add('visible');
-
-  setTimeout(() => {
-    respuesta.classList.remove('visible');
-    respuesta.classList.add('oculto');
-  }, 4000);
-
-
-});
-formulario.addEventListener('submit', function(e) {
   e.preventDefault();
 
-  const nombre = document.getElementById('nombre').value;
-  const email = document.getElementById('email').value;
-  const mensaje = document.getElementById('mensaje').value;
+  const datos = {
+    nombre: document.getElementById('nombre').value,
+    email: document.getElementById('email').value,
+    mensaje: document.getElementById('mensaje').value,
+  };
 
-  console.log('Mensaje recibido:', { nombre, email, mensaje });
+  const btn = formulario.querySelector('button');
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
 
-  formulario.reset();
-  respuesta.classList.remove('oculto');
-  respuesta.classList.add('visible');
+  emailjs.send('service_6fsmfuh', 'template_86cj1kn', datos)
+    .then(() => {
+      formulario.reset();
+      btn.textContent = 'Enviar mensaje';
+      btn.disabled = false;
+      respuesta.classList.remove('oculto');
+      respuesta.classList.add('visible');
 
-  setTimeout(() => {
-    respuesta.classList.remove('visible');
-    respuesta.classList.add('oculto');
-  }, 4000);
+      setTimeout(() => {
+        respuesta.classList.remove('visible');
+        respuesta.classList.add('oculto');
+      }, 4000);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      btn.textContent = 'Enviar mensaje';
+      btn.disabled = false;
+      alert('Hubo un error al enviar. Intenta de nuevo.');
+    });
+});
 
-}); // ✅ aquí cierra el formulario
-
-// Maneja el cambio de tema — fuera del formulario
+// Cambio de tema
 const btnTema = document.getElementById('btn-tema');
 const body = document.body;
 
@@ -65,4 +59,4 @@ btnTema.addEventListener('click', function() {
   } else {
     btnTema.textContent = '☀️ Modo claro';
   }
-}); // ✅ aquí cierra el botón
+});
